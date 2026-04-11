@@ -1,0 +1,23 @@
+pengine_rpc('http://localhost:5000',query,[options]) // this will call a query to the pengine at that server address
+
+Can write to a file using open('file.name',write or append, Stream), write(Stream,'stuff to write'), nl(Stream), close(Stream).
+//This can be used to create and write .pl files which are callable soo pretty cool.
+
+Got it setup so there is a bill file for customers and a customers file. If I need to add customers just append to the
+customers file, same with bill just append to the bill file.
+        customerBill.pl // bill file 
+        customers.pl // customer file
+
+I created a function that can add to an existing file and essentially create a customer. Need to
+determine how to edit an existing customer.
+
+In Customer Rules there is a funciton save_each_customer. This will save all the facts about customer(Id,Name,Email,Phone,Status)
+that is in memory into a written file(hopefully customers) The function needs some edits so that it keeps the customer module stuff
+but this will work with the function that edits existing facts.
+
+Need to write emails as strings as well, not sure how to do that quite yet.
+
+Updated function, also if I need to change a term to a string it is with term_string(In,Out).
+I ended up not needing to because I realized that I should always be putting a string into the create
+customer so it should be fine as long as I operate that way.
+

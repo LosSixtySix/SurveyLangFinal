@@ -1,0 +1,12 @@
+Things to:
+- Create a usable Interface to interact with the data
+    - Run functions without having to run them
+    - Create input fields
+    - Create a spot to display data
+
+Things Done:
+- Learned how to write to a file
+- Learned a way that I could update data during runtime
+- Learned a way to write current runtime data to file for persitency
+- Starta pengine server
+- Connect files together with modules
