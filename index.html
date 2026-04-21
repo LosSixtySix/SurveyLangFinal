@@ -10,15 +10,6 @@
 
     </div>
     <script src="tau-prolog.js"></script>
-    <script type="text/prolog" id ="code.pl">
-        :- use_module(library(js)).
-
-        alert(Text) :- 
-            prop(alert,Alert),
-            apply(Alert,[Text], _).
-
-        init :- alert('Hello, Tau Prolog!').
-    </script>
     <script>
 
         var session2 = pl.create();
