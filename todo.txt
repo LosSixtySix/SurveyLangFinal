@@ -8,5 +8,5 @@ Things Done:
 - Learned how to write to a file
 - Learned a way that I could update data during runtime
 - Learned a way to write current runtime data to file for persitency
-- Starta pengine server
+- Start a pengine server
 - Connect files together with modules
