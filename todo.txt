@@ -1,8 +1,9 @@
 Things to:
 - Create a usable Interface to interact with the data
-    - Run functions without having to run them
-    - Create input fields
-    - Create a spot to display data
+    -Create a button to ask for status of customers
+    -Create a field to add a customer
+    -Create a field to edit a customer by ID
+    -Create a field to search for a customer by Name, Email, Address, or ID
 
 Things Done:
 - Learned how to write to a file
@@ -10,3 +11,5 @@ Things Done:
 - Learned a way to write current runtime data to file for persitency
 - Start a pengine server
 - Connect files together with modules
+- Started using Tau to run everything.
+
