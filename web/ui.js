@@ -1,47 +1,15 @@
-var session2 = pl.create();
+
+
+var session = pl.create();
 var show = function (answer) {
-    console.log(session2.format_answer(answer))
+    console.log(session.format_answer(answer))
 };
-
-
-const RenderCustomers = async (customers,session) =>{
-    queryCustomers(session).then(x => {
-        x.forEach(e =>{
-            RenderCustomer(e)
-        })
-    })
-}
-
-const RenderCustomer = async(customer) =>{
-
-
-    const cardContainer = document.getElementById(`MainContainer`)
-
-    const card = document.createElement(`div`)
-    card.classList.add(`card`)
-
-    const title = document.createElement(`h3`)
-    title.id = `cardTitle`
-    title.textContent = `Filler`
-    card.appendChild(title)
-}
-
-async function queryCustomers(session){
-    let answers = [];
-    await session.promiseConsult("../test.pl");
-    await session.promiseQuery("customer(Id,Name,Email,Phone,Status).");
-
-    for await (let answer of session.promiseAnswers())
-        answers.push(answer);
-    return answers
-}
-
-
-async function test(sesion){
-    x = [];
+let listOfDicts = []
+async function queryCustomers(sesion){
+    let x = [];
     await sesion.promiseConsult("../test.pl");
     await sesion.promiseQuery("customer(Id,Name,Email,Phone,Status).");
-    t = await sesion.promiseAnswers()
+    let t = await sesion.promiseAnswers()
     
     for await(let n of t){
         x.push(n)
@@ -50,12 +18,53 @@ async function test(sesion){
     return x;
 }
 
-test(session2).then(x=>{
-    console.log(x)
-    for (let n of x){
-         console.log(n.lookup("Email"))
+let x = await queryCustomers(session);
+for await (let e of x){
+    let keys = []
+    let values = []
+    let splitString = session.format_answer(e).split(" ")
+    splitString = splitString.filter(s => s!=="=")
+    for(let i = 0; i < splitString.length; i++){
+        splitString[i] = splitString[i].replaceAll(",","")
+        splitString[i] = splitString[i].replaceAll("[","")
+        splitString[i] = splitString[i].replaceAll("]","")
+        if (i%2 === 0){
+            keys.push(splitString[i])
+        }else{
+            values.push(splitString[i])
+        }
     }
-})
+    let dict = {}
+    for(let i = 0;i <keys.length;i++){
+        dict[keys[i]] = values[i]
+
+    }
+    listOfDicts.push(dict)
+}
+
+async function RenderCustomers(customers){
+    for await(let n of customers){
+        RenderCustomer(n)
+    }
+    
+}
+
+const RenderCustomer = (customer) =>{
+    const cardContainer = document.getElementById(`MainContainer`)
+
+    const card = document.createElement(`div`)
+    card.classList.add(`card`)
+
+    const title = document.createElement(`h3`)
+    title.id = `cardTitle`
+    title.textContent = customer["Name"]
+    card.appendChild(title)
+
+    cardContainer.appendChild(card)
+    console.log("I did this")
+}
+
+RenderCustomers(listOfDicts)
 
 // queryCustomers(session2).then(x =>{
 //     x.forEach(e =>{
