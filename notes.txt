@@ -26,3 +26,5 @@ Idk I was getting errors if I tried to use them from a file. Can't use dynamic i
 
 Thought of trying to use tau-prolog to edit the DOM but was unsuccesful, not much online that I could find
 to help understand that portion of it better.
+
+Having a hard time getting rules to work with tau-prolog from loaded files. Not sure what I am doing wrong
