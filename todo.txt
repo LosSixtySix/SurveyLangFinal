@@ -12,4 +12,5 @@ Things Done:
 - Start a pengine server
 - Connect files together with modules
 - Started using Tau to run everything.
+- Got a basic display working
 

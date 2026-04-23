@@ -21,3 +21,8 @@ Updated function, also if I need to change a term to a string it is with term_st
 I ended up not needing to because I realized that I should always be putting a string into the create
 customer so it should be fine as long as I operate that way.
 
+When using Tau-Prolog I can consult files that are using modules but I can't directly access those usings?
+Idk I was getting errors if I tried to use them from a file. Can't use dynamic in .pl files when loading into tau.
+
+Thought of trying to use tau-prolog to edit the DOM but was unsuccesful, not much online that I could find
+to help understand that portion of it better.

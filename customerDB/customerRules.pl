@@ -9,9 +9,9 @@
          save_each_customer
       ]).
 
-:- use_module(customerBill).
-:- use_module(customers).
-:- use_module(customerID).
+:- use_module('../customerDB/customerBill.pl').
+:- use_module('../customerDB/customers.pl').
+:- use_module('../customerDB/customerID.pl').
 :- use_module(library(make)).
 
 paid_customer(ID,Name,Email,Phone) :- customer(ID,Name,Email,Phone,_), bill_sum(ID,0).

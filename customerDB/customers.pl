@@ -1,5 +1,10 @@
 :-module(customers,[customer/5]).
-:-dynamic customer/5.
+
+% :-dynamic customer/5.
+
+:- use_module('../customerDB/customerBill.pl').
+
+paid_customer(ID,Name,Email,Phone) :- customer(ID,Name,Email,Phone,_), bill_sum(ID,0).
 customer(1,jill,"jil@gmail.com",4566454555,true).
 customer(2,joebob,"test@gmail.com",456664646,false).
 customer(4,george,"yourmom",4356667777,true).

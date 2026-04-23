@@ -1,3 +1,4 @@
+paid_customer(ID,Name,Email,Phone) :- customer(ID,Name,Email,Phone,true).
 customer(1,jill,"jil@gmail.com",4566454555,true).
 customer(2,joebob,"test@gmail.com",456664646,false).
 customer(4,george,"yourmom",4356667777,true).
