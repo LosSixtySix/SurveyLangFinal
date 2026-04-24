@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href = "style.css" rel="stylesheet">
+    <script src="../pengineServer/jquery.js" type="text/javascript"></script>
     <script src="tau-prolog.js" type="text/javascript"></script>
     <script src="ui.js"  type="module" ></script>
+    <script src="../pengineServer/pengine.js" type="text/javascript"></script>
+    <script>
+        var pengine = new Pengine({
+            server:"https://localhost:5050",
+            ask: "create_customer(unique,'test@gmail.com',111,false)"
+        })
+    </script>
+
     <title>Customer Controller</title>
 
 </head>

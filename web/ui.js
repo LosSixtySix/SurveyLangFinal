@@ -56,15 +56,15 @@ async function queryCustomerByID(Id){
     RenderCustomers(customerAsListOfDicts,"SearchCustomerContainer")
 
 }
-async function createCustomer(Name,Email,Phone,Address){
+async function createCustomer(Name,Email,Phone,Status){
     var session = pl.create();
     await session.promiseConsult(`../customerDB/customerRules.pl`)
-    await session.promiseQuery(`create_customer(${Name},${Email},${Phone},${Address}).`)
+    await session.promiseQuery(`create_customer(${Name},"${Email}",${Phone},${Status}).`)
 
     await session.promiseAnswers()
 }
 
-// createCustomer('Test','Test',111,'Test')
+createCustomer('Test','Test',111,'Test')
 
 //This Function is not working...Need to figure that out
 async function queryCustomersByPaid(){

@@ -33,3 +33,8 @@ Rules do work with Tau-Prolog there are just some predicates that I wanted to us
 so I have to write my own.
 
 bagof/3 will make lists that are seperate while findall/3 will aggregate the lists together
+
+Got Pengine server working!!! I need to start the pengine server first then in the index.html it can be loaded using
+var pengine = new Pengine({server: "https:location/of/server:5050"})
+here is a good link to help with running it https://swi-prolog.discourse.group/t/how-to-run-pengines-and-call-it-from-external-server/4522/3
+Another link I should look at https://www.swi-prolog.org/pengines/GenealogistGUI.md

@@ -4,7 +4,7 @@
 :- use_module(library(pengines)).
 :- use_module(library(sandbox)).
 
-:- use_module(pengine_sandbox:customerRules).
+:- use_module(pengine_sandbox:'../customerDB/customerRules').
 
 server(Port) :-
     writef('Starting Server at %d',[Port]),
