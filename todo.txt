@@ -4,7 +4,7 @@ Things to:
     -Create a field to add a customer
     -Create a field to edit a customer by ID
     -Create a field to search for a customer by Name, Email, Address, or ID
-    - Fix function queryByPaid
+    
 
 Things Done:
 - Learned how to write to a file
@@ -14,4 +14,5 @@ Things Done:
 - Connect files together with modules
 - Started using Tau to run everything.
 - Got a basic display working
+- Fixed function queryByPaid
 

@@ -50,11 +50,21 @@ async function queryCustomerByID(Id){
     let answers = await session.promiseAnswers()
 
     let customerAsListOfDicts = await convertToDict(answers,session)
-    
+
+    customerAsListOfDicts[0]["Id"] = Id
 
     RenderCustomers(customerAsListOfDicts,"SearchCustomerContainer")
 
 }
+async function createCustomer(Name,Email,Phone,Address){
+    var session = pl.create();
+    await session.promiseConsult(`../customerDB/customerRules.pl`)
+    await session.promiseQuery(`create_customer(${Name},${Email},${Phone},${Address}).`)
+
+    await session.promiseAnswers()
+}
+
+createCustomer('Test','Test',111,'Test')
 
 //This Function is not working...Need to figure that out
 async function queryCustomersByPaid(){
@@ -68,7 +78,7 @@ async function queryCustomersByPaid(){
     let answers = await session.promiseAnswers()
 
     let customersAsListOfDicts = await convertToDict(answers,session)
-    
+
     RenderCustomers(customersAsListOfDicts,"CustomersPaidContainer")
 
 }  

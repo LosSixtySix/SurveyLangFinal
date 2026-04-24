@@ -1,4 +1,4 @@
-:-module(customers,[customer/5,customer_false/1]).
+:-module(customers,[customer/5]).
 
 % :-dynamic customer/5.
 
