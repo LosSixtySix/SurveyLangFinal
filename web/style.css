@@ -9,18 +9,26 @@
 body{
     display: flex;
     min-height: 100vh;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin: 0;
     padding: 0;
     background-color: var(--backGroundColor);
+    justify-content: center;
 }
-#CardContainer{
+.CardContainer{
     display: flex;
     flex-wrap: wrap;
+    overflow: auto;
+    height: 15em;
+    width: 48%;
+    border-radius: 1em;
+    border-style: solid;
+    margin: .2em;
 }
 .card{
     border-radius: var(--border-radius);
-    border: 0.3em;
+    border-width: .2em;
     border-color: var(--border-color);
     border-style: solid;
 
@@ -36,5 +44,8 @@ body{
     padding: 1em;
 }
 h3{
+    text-align: center;
+}
+h1{
     text-align: center;
 }

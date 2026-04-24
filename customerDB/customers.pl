@@ -1,13 +1,13 @@
-:-module(customers,[customer/5,paid_customer/4]).
+:-module(customers,[customer/5,customer_false/1]).
 
 % :-dynamic customer/5.
 
-:- use_module('../customerDB/customerBill.pl').
 
-paid_customer(ID,Name,Email,Phone) :- customer(ID,Name,Email,Phone,_), bill_sum(ID,0).
+% paid_customer(ID,Name,Email,Phone) :- customer(ID,Name,Email,Phone,_), bill_sum(ID,0).
+
 customer(1,jill,"jil@gmail.com",4566454555,true).
 customer(2,joebob,"test@gmail.com",456664646,false).
-customer(4,george,"yourmom",4356667777,true).
+customer(4,george,"test",4356667777,true).
 customer(13,test,"test",test,true).
 customer(14,test,"test",test,true).
 customer(15,test,"test",test,true).
@@ -20,4 +20,4 @@ customer(21,test,"test",test,true).
 customer(22,test,"test",test,true).
 customer(23,test3,"tet54",t,false).
 customer(0,jane,"jane@gmail.com",111111111,true).
-customer(24,jane,'joebob@gmail.com',1112223333,true).
+customer(24,jane,"joebob@gmail.com",1112223333,true).

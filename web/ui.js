@@ -28,7 +28,8 @@ async function convertToDict(t,session){
         }
         listOfCustomerDicts.push(dict)
     }
-    return listOfCustomerDicts;
+
+return listOfCustomerDicts;
 }
 
 async function queryAllCustomers(){
@@ -49,6 +50,8 @@ async function queryCustomerByID(Id){
     let answers = await session.promiseAnswers()
 
     let customerAsListOfDicts = await convertToDict(answers,session)
+    
+
     RenderCustomers(customerAsListOfDicts,"SearchCustomerContainer")
 
 }
@@ -57,56 +60,55 @@ async function queryCustomerByID(Id){
 async function queryCustomersByPaid(){
     var session = pl.create()
 
-    session.consult(`../customerDB/customerBill.pl`,{
-        success: function() {
-            session.query(`customer_bill(Id,Name,Idk)`,{
-                success: function () {
-                    session.answer({
-                        success: function(answer){
-                            for (let n of answer){
-                                console.log(n)
-                            }
-                        },
-                        error: function(err){
-                            console.log(err)
-                        }
-                    })
-                },
-                error: function(err){
-                    console.log(err)
-                }
-            })
-        },
-        error: function(err){
-            console.log(err)
-        }
-    })
+    await session.promiseConsult(`../customerDB/customers.pl`)
+    await session.promiseConsult(`../customerDB/customerBill.pl`)
 
+    await session.promiseQuery(`bill_sum(Id,Ammount).`)
 
-    // // await session.promiseConsult(`../customerDB/customers.pl`);
-    // await session.promiseConsult(`
-    //     :- use_module('../customerDB/customerBill.pl').
-    //     `)
-    // await session.promiseQuery(`
-    //     customer_bill(Id,Name,Idk).
-    //     `)
+    let answers = await session.promiseAnswers()
+
+    let customersAsListOfDicts = await convertToDict(answers,session)
     
-    // let t = await session.promiseAnswers()
-
-    // for await(let n of t){
-    //     console.log(session.format_answer(n))
-    // }
+    RenderCustomers(customersAsListOfDicts,"CustomersPaidContainer")
 
 }  
-queryCustomersByPaid()
+
 
 async function RenderCustomers(customers,container){
-    for await(let n of customers){
-        RenderCustomer(n,container)
+    if(container === "CustomersPaidContainer"){
+        for await(let n of customers){
+            RenderPaidCustomer(n)
+        }
+    }else{
+        for await(let n of customers){
+            RenderCustomer(n,container)
+        }
     }
+   
     
 }
+const RenderPaidCustomer = (customer) =>{
+    const cardContainer = document.getElementById("CustomersPaidContainer")
+    const card = document.createElement(`div`)
+    card.classList.add(`card`)
 
+    const title = document.createElement(`h3`)
+    title.id = `cardTitle`
+    title.textContent = `Customer Id: ${customer["Id"]}`
+    card.appendChild(title)
+
+    const cardText = document.createElement(`div`)
+    cardText.classList.add(`card-text`)
+
+    const cardTotalAmount = document.createElement(`p`)
+    cardTotalAmount.classList.add(`infoSection`)
+    cardTotalAmount.textContent = `Owes: \$${customer["Ammount"]}`
+    cardText.appendChild(cardTotalAmount)
+
+    card.appendChild(cardText)
+    cardContainer.appendChild(card)
+
+}
 const RenderCustomer = (customer,container) =>{
     const cardContainer = document.getElementById(container)
     const card = document.createElement(`div`)
@@ -147,6 +149,7 @@ const RenderCustomer = (customer,container) =>{
     
 }
 queryAllCustomers();
+queryCustomersByPaid()
 queryCustomerByID(1)
 
 
