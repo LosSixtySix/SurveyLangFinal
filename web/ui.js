@@ -64,7 +64,7 @@ async function createCustomer(Name,Email,Phone,Address){
     await session.promiseAnswers()
 }
 
-createCustomer('Test','Test',111,'Test')
+// createCustomer('Test','Test',111,'Test')
 
 //This Function is not working...Need to figure that out
 async function queryCustomersByPaid(){

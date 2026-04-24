@@ -8,15 +8,24 @@
 :- use_module('../customerDB/customerBill.pl').
 :- use_module('../customerDB/customers.pl').
 :- use_module('../customerDB/customerID.pl').
+:- use_module(library(make)).
+
+paid_customer(ID,Name,Email,Phone) :- customer(ID,Name,Email,Phone,_), bill_sum(ID,0).
+unpaid_customer(ID,Name,Email,Phone) :- customer(ID,Name,Email,Phone,_), not(bill_sum(ID,0)).
+disconnected_customer(ID,Name,Email,Phone) :- customer(ID,Name,Email,Phone,false).
+
+
 
 create_customer(Name,Email,Phone,Status) :- 
-    next_ID(ID),
-    assertz(customer(ID,Name,Email,Phone,Status)),
+      next_ID(ID),
+%     open('../customerDB/customers.pl',append,Stream1),
+%     format(Stream1,('customer(~w,~w,~w,~w,~w).'),[ID,Name,Email,Phone,Status]),
+%     nl(Stream1),
+%     close(Stream1),
     NewID is ID + 1,
-    open('customerID.pl',write,Stream2),
-    write(Stream2,  (:- module(customerID,[next_ID/1]))),
-    write(Stream2,'.'),
-    write(Stream2,'~n'),
+    open('../customerDB/customerID.pl',write,Stream2),
+    format(Stream2, ':-module(customerID,[next_ID/1]).',[]),
+    nl(Stream2),
     write(Stream2,next_ID(NewID)),
     write(Stream2,'.'),
     close(Stream2).
@@ -27,14 +36,14 @@ update_customer(ID,Name,Email,Phone,Status) :-
 
 save_each_customer() :-
       open('customers.pl',write,Stream),
-      write(Stream,(:- module(customers,[customer/5]))),
+      write(Stream,:- module(customers,[customer/5])),
       write(Stream,'.'),
       nl(Stream),
-      write(Stream,(:- dynamic(customer/5))),
+      write(Stream,:- dynamic(customer/5)),
       write(Stream,'.'),
       nl(Stream),
       forall((customer(Id,Name,Email,Phone,Status),
-      writeq(Stream,(customer(Id,Name,Email,Phone,Status))),
+      write(Stream,customer(Id,Name,Email,Phone,Status)),
       write(Stream,'.'),
       nl(Stream)),true),
       close(Stream).
