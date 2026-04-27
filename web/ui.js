@@ -59,14 +59,14 @@ async function queryCustomerByID(Id){
 async function createCustomer(Name,Email,Phone,Status){
     var session = pl.create();
     await session.promiseConsult(`../customerDB/customerRules.pl`)
-    await session.promiseQuery(`create_customer(${Name},"${Email}",${Phone},${Status}).`)
+    await session.promiseQuery(`create_customerT(${Name},"${Email}",${Phone},${Status}).`)
 
     await session.promiseAnswers()
+
 }
 
-createCustomer('Test','Test',111,'Test')
 
-//This Function is not working...Need to figure that out
+
 async function queryCustomersByPaid(){
     var session = pl.create()
 
@@ -158,37 +158,7 @@ const RenderCustomer = (customer,container) =>{
     cardContainer.appendChild(card)
     
 }
+createCustomer('Uniquw','Test',111,'Test')
 queryAllCustomers();
 queryCustomersByPaid()
 queryCustomerByID(1)
-
-
-// queryCustomers(session2).then(x =>{
-//     x.forEach(e =>{
-//         console.log(e.links.Email.args)
-        
-//     })
-// })
-
-// const test = await queryCustomers(session2);
-// console.log(test)
-// test.forEach(element => {
-//      show(element)
-// });
-
-// session2.consult("../test.pl",
-//     {success: function() {
-//         session2.query("customer(Id,Name,Email,Phone,Status).",{
-//             success: function(goal){
-//                 session2.answer({
-//                     success: function(answer){
-
-//                     },
-//                     error: function(err){console.log(`Failure due to: ${err}`)},
-//                     fail: function() {console.log('no more answers')},
-//                     limit: function(){console.log('limit exceeded')},
-//             });},
-//                 error: function(err){console.log(`Failure due to: ${err}`)}
-// });},
-//     error: function(err) {console.log(`Failure due to: ${err}`)}, 
-// });

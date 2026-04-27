@@ -38,3 +38,7 @@ Got Pengine server working!!! I need to start the pengine server first then in t
 var pengine = new Pengine({server: "https:location/of/server:5050"})
 here is a good link to help with running it https://swi-prolog.discourse.group/t/how-to-run-pengines-and-call-it-from-external-server/4522/3
 Another link I should look at https://www.swi-prolog.org/pengines/GenealogistGUI.md
+
+
+To run unit tests, load file tests.plt like so ['./tests.plt'].
+then query run_tests.

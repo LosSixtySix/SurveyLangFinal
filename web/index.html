@@ -9,10 +9,22 @@
     <script src="ui.js"  type="module" ></script>
     <script src="../pengineServer/pengine.js" type="text/javascript"></script>
     <script>
+
         var pengine = new Pengine({
-            server:"https://localhost:5050",
-            ask: "create_customer(unique,'test@gmail.com',111,false)"
+            server:"http://localhost:5053",
+            onsuccess: handleSuccess,
+            onerror: handleError
         })
+        function handleSuccess(){
+            var solution = JSON.stringify(this.data);
+            console.log(solution);
+            if (!this.more){
+                console.log("No more Solutions")
+            }
+        }
+        function handleError(){
+            console.log(this.data)
+        }
     </script>
 
     <title>Customer Controller</title>

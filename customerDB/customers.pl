@@ -1,6 +1,6 @@
 :-module(customers,[customer/5]).
 
-% :-dynamic customer/5.
+:-dynamic(customer/5).
 
 
 % paid_customer(ID,Name,Email,Phone) :- customer(ID,Name,Email,Phone,_), bill_sum(ID,0).
@@ -20,4 +20,9 @@ customer(21,test,"test",test,true).
 customer(22,test,"test",test,true).
 customer(23,test3,"tet54",t,false).
 customer(0,jane,"jane@gmail.com",111111111,true).
-customer(24,jane,"joebob@gmail.com",1112223333,true).
+customer(24,jane,"joebob@gmail.com",1112223333,true).customer(27,test,"test",11,true).
+customer(27,uniqu,"tets",111,true).
+customer(27,test,"test",11,true).
+customer(28,thisisNew,"test",111,true).
+customer(28,thisis,"test",111,true).
+customer(29,this,"test",111,true).
